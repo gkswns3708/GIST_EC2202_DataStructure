@@ -99,20 +99,19 @@ class DoublyLinkedList:
         print()
 
 
+if __name__ == "__main__":
+    N, K = map(int, sys.stdin.readline().split())
+    L = DoublyLinkedList()
+    for i in range(1, N + 1):
+        L.pushBack(i)
 
+    print("<", end="")
+    while L.size != 0:
+        for j in range(K - 1):
+            L.pushBack(L.popFront())
+        print(L.head.next.key, end="")
+        L.popFront()
+        if L.size != 0:
+            print(", ", end="")
 
-N, K = map(int, sys.stdin.readline().split())
-L = DoublyLinkedList()
-for i in range(1, N + 1):
-    L.pushBack(i)
-
-print("<", end="")
-while L.size != 0:
-    for j in range(K - 1):
-        L.pushBack(L.popFront())
-    print(L.head.next.key, end="")
-    L.popFront()
-    if L.size != 0:
-        print(", ", end="")
-
-print(">", end="")
+    print(">", end="")

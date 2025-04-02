@@ -25,27 +25,25 @@ class Stack:
         if self.size == 0:
             return -1
         return self.stack[-1]
-
-# 입력 처리
-get_line = lambda: map(int, sys.stdin.readline().rstrip().split())
-get_input = lambda: int(sys.stdin.readline().strip())
-
-# 초기화
-N = get_input()
-stack = Stack()
-
-# 명령 처리
-for _ in range(N):
-    now_input = list(get_line())
-    command = now_input[0]
     
-    if command == 1:
-        stack.push(now_input[1])
-    elif command == 2:
-        print(stack.pop())
-    elif command == 3:
-        print(stack.get_size())
-    elif command == 4:
-        print(stack.empty())
-    elif command == 5:
-        print(stack.top())
+if __name__ == "__main__":
+    get_line = lambda: map(int, sys.stdin.readline().rstrip().split())
+    get_input = lambda: int(sys.stdin.readline().strip())
+
+    N = get_input()
+    stack = Stack()
+
+    for _ in range(N):
+        now_input = list(get_line())
+        command = now_input[0]
+        
+        if command == 1:
+            stack.push(now_input[1])
+        elif command == 2:
+            print(stack.pop())
+        elif command == 3:
+            print(stack.get_size())
+        elif command == 4:
+            print(stack.empty())
+        elif command == 5:
+            print(stack.top())
