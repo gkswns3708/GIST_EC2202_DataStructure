@@ -1,28 +1,26 @@
+import sys
+
 class Stack:
-    def __init__(self):
-        self.stack = []  # 내부적으로 리스트 사용
-        self.size = 0  # 스택의 크기 관리
-    
-    def push(self, x: float):  # 스택에 값 추가
-        self.stack.append(x)
-        self.size += 1  # 크기 증가
-    
-    def pop(self) -> float:  # 스택의 최상단 값 제거 후 반환
-        if self.size == 0:
-            return -1
-        self.size -= 1  # 크기 감소
-        return self.stack.pop()
-    
-    def get_size(self) -> int:  # 스택의 크기 반환
-        return self.size
-    
-    def empty(self) -> int:  # 스택이 비어있는지 확인 (비어있으면 1, 아니면 0)
-        return 1 if self.size == 0 else 0
-    
-    def top(self) -> float:  # 스택의 최상단 값 확인
-        if self.size == 0:
-            return -1
-        return self.stack[-1]
+  def __init__(self):
+    self.items = []
+
+  def push(self, val):
+    self.items.append(val)
+
+  def pop(self):
+    try:                      
+      return self.items.pop()
+    except IndexError:        
+      print("Stack is empty")
+
+  def top(self):
+    try:
+      return self.items[-1]
+    except IndexError:
+      print("Stack is empty")
+
+  def __len__(self): 
+    return len(self.items)
 
 
 def evaluate_postfix(expression: str, alphabet_values: list) -> float:
@@ -52,7 +50,6 @@ def evaluate_postfix(expression: str, alphabet_values: list) -> float:
 
 
 def main():
-    import sys
     input = sys.stdin.read
     data = input().splitlines()
 
