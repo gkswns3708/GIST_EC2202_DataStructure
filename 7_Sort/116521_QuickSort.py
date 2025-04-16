@@ -2,18 +2,13 @@
 # PyPy3는 스택 메모리 사용량이 Python3보다 적지만,
 # PyPy3의 메모리 관리 방식이 Python3와 다르기 때문에 스택 메모리 사용량이 더 많을 수 있습니다.
 
-# Python3로 제출 시 시간 초과가 발생합니다. 
-# 이는 재귀 기반 퀵 정렬(quick sort) 구현에서 깊은 재귀 호출로 인한 스택 사용량 증가와, 
-# Python3의 동적 메모리 관리로 인한 함수 호출 오버헤드 때문으로 판단됩니다.
-# ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-# In BOJ, submitting with PyPy3 results in memory overflow (presumably due to stack memory overflow).
-# Submitting with Python3 results in a time limit exceeded error.
-# This is likely due to increased stack usage from deep recursive calls in the quick sort implementation,
-# and the function call overhead from Python3's dynamic memory management.
+# Python3로 제출 시 저격 데이터로 인해 무조건적인 [0]번째 원소를 pivot으로 선택하는 코드에 대해 시간초과가 나게 됩니다.
+# 이제 19번째 줄 pivot = A[0]에서 pivot = A[len(A) // 2] 같은 다른 원소의 인덱스를 사용하여
+# 시간초과를 피할 수 있습니다.
 
 
 import sys
-sys.setrecursionlimit(10**3 * 5)
+sys.setrecursionlimit(10**6)
 
 get_line: iter = lambda: map(int, sys.stdin.readline().rstrip().split())
 get_input: int = lambda: int(sys.stdin.readline().strip())
@@ -22,7 +17,7 @@ def quick_sort(A):
   if len(A) == 0:
     return A
 
-  pivot = A[0]
+  pivot = A[len(A)// 2] # pivot 0 -> len(A) // 2로 수정
   left = []
   right = []
   middle = []

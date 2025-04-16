@@ -11,7 +11,7 @@ def insert_sort(A):
 
   return A
 
-# w = [ random.randrange(1000) for i in range(100) ]
-# print(w)
-# ws = insert_sort(w)
-# print(ws)
+w = [ random.randrange(1000) for i in range(100) ]
+print(w)
+ws = insert_sort(w)
+print(ws)
