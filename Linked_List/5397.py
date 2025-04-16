@@ -1,5 +1,4 @@
 import sys
-input = sys.stdin.readline
  
 class Node:
     def __init__(self, data=None):
@@ -7,7 +6,7 @@ class Node:
         self.prev = None
         self.next = None
         
-class LinkedList:
+class LinkedList: # 이런식으로 Customize한 Linked List 사용 가능.
     def __init__(self):
         self.head = Node()          # 더미 헤드 노드
         self.cursor = self.head     # 커서는 헤드에 저장
@@ -48,7 +47,8 @@ class LinkedList:
  
         return ''.join(result)
  
-def main():        
+def main():     
+    input = sys.stdin.readline   
     t = int(input())
     for _ in range(t):
         linked_list = LinkedList()
