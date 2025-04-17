@@ -72,3 +72,40 @@ class Deque:
 
   def is_empty(self):
     return self._size == 0
+
+def main():
+    dq = Deque()
+
+    print("=== append_left / append_right 테스트 ===")
+    dq.append_left(10)  # Deque: 10
+    dq.append_left(20)  # Deque: 20 10
+    dq.append_right(30) # Deque: 20 10 30
+    dq.append_right(40) # Deque: 20 10 30 40
+
+    # 순차 출력
+    print("현재 Deque 상태 (앞 → 뒤):", end=" ")
+    node = dq.head
+    while node:
+        print(node.key, end=" ")
+        node = node.next
+    print()  # 기대 결과: 20 10 30 40
+
+    print("현재 Deque 상태 (뒤 → 앞):", end=" ")
+    node = dq.tail
+    while node:
+        print(node.key, end=" ")
+        node = node.prev
+    print()  # 기대 결과: 40 30 10 20
+
+    print("=== pop_left / pop_right 테스트 ===")
+    print("pop_left:", dq.pop_left())   # 20
+    print("pop_right:", dq.pop_right()) # 40
+    print("pop_left:", dq.pop_left())   # 10
+    print("pop_right:", dq.pop_right()) # 30
+    print("pop_right (비어있음):", dq.pop_right()) # None + 메시지 출력
+
+    print("=== 최종 상태 확인 ===")
+    print("Deque is empty:", dq.is_empty())  # 기대 결과: True
+
+if __name__ == "__main__":
+    main()

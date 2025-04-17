@@ -13,16 +13,10 @@ class Queue:
             print("Queue is empty")
             return None
         else:
-            # optimize_memory()  # (Optional) 메모리 최적화 함수 호출
             x = self.items[self.front_index]  # 현재 front의 아이템 가져오기
             self.front_index += 1             # front 포인터 한 칸 이동
             return x                          # 가져온 아이템 반환
 
-    # Optional: 메모리 누수를 막기 위해 front_index가 전체 크기의 절반이 되면 리스트를 슬라이스
-    # def optimize_memory(self):
-    #     if self.front_index > len(self.items) // 2:
-    #         self.items = self.items[self.front_index:]
-    #         self.front_index = 0
             
 
 

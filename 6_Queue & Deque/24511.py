@@ -13,7 +13,6 @@ class Queue:
             print("Queue is empty")
             return None
         else:
-            # optimize_memory()               # (Optional) 메모리 최적화 함수 호출
             x = self.items[self.front_index]  # 현재 front의 아이템 가져오기
             self.front_index += 1             # front 포인터 한 칸 이동
             return x                          # 가져온 아이템 반환
