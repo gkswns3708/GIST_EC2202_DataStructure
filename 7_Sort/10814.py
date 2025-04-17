@@ -34,10 +34,10 @@ def merge_sort(a):
 def compare(x, y):
     if x[0] > y[0]:
         return 1
-    elif x[1] == y[1]:
-        if x[0] > y[0]:
+    elif x[0] == y[0]:
+        if x[2] > y[2]:
             return 1
-        elif x[0] == y[0]:
+        elif x[2] == y[2]:
             return 0
         else:
             return -1
