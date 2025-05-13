@@ -33,6 +33,9 @@ class Dict():
         
 if __name__ == "__main__":
     N = int(sys.stdin.readline())
+    # Prime number for hash table size
+    # Because the prime number helps to reduce collisions in the hash table
+    # and improves the performance of the hash table.
     d = Dict(1000003)
     for num in sys.stdin.readline().split():
         d[num] = True
