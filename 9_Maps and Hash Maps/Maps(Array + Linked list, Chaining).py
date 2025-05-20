@@ -59,6 +59,7 @@ class DictChaining:
 
         raise KeyError(key)
     
+    # 출력용
     def printall(self):
         for i in range(len(self.data)):
             n = self.data[i]
