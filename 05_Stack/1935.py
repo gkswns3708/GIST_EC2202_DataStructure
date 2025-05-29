@@ -1,51 +1,52 @@
 import sys
 
+
 class Stack:
-  def __init__(self):
-    self.items = []
+    def __init__(self):
+        self.items = []
 
-  def push(self, val):
-    self.items.append(val)
+    def push(self, val):
+        self.items.append(val)
 
-  def pop(self):
-    try:                      
-      return self.items.pop()
-    except IndexError:        
-      print("Stack is empty")
+    def pop(self):
+        try:
+            return self.items.pop()
+        except IndexError:
+            print("Stack is empty")
 
-  def top(self):
-    try:
-      return self.items[-1]
-    except IndexError:
-      print("Stack is empty")
+    def top(self):
+        try:
+            return self.items[-1]
+        except IndexError:
+            print("Stack is empty")
 
-  def __len__(self): 
-    return len(self.items)
+    def __len__(self):
+        return len(self.items)
 
 
 def evaluate_postfix(expression: str, alphabet_values: list) -> float:
     s = Stack()
-    
+
     for char in expression:
         # 피연산자인 경우 (A~Z)
         if char.isalpha():
-            index = ord(char) - ord('A')
+            index = ord(char) - ord("A")
             s.push(alphabet_values[index])
-        
+
         # 연산자인 경우
         elif char in "+-*/":
             a = s.pop()
             b = s.pop()
-            
-            if char == '+':
+
+            if char == "+":
                 s.push(b + a)
-            elif char == '-':
+            elif char == "-":
                 s.push(b - a)
-            elif char == '*':
+            elif char == "*":
                 s.push(b * a)
-            elif char == '/':
+            elif char == "/":
                 s.push(b / a)
-    
+
     return s.top()
 
 

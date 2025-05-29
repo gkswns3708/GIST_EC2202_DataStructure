@@ -217,52 +217,20 @@ class BST:
         return result
 
 
-def build_tree():
-    """테스트용으로 동일한 키들로 트리를 하나 생성해주는 헬퍼"""
-    keys = [15, 4, 3, 12, 9, 18, 16, 32]
-    t = BST()
-    for k in keys:
-        t.insert(k)
-    return t, keys
+def build_levels(inorder, level, levels):
+    if not inorder:
+        return
+    mid = len(inorder) // 2
+    levels[level].append(inorder[mid])
+    build_levels(inorder[:mid], level + 1, levels)
+    build_levels(inorder[mid + 1 :], level + 1, levels)
 
 
-if __name__ == "__main__":
-    # 1) 기본 트리 생성 및 순회/최댓값 테스트
-    t, keys = build_tree()
-    print("초기 inorder   :", t.inorder())  # [3, 4, 9, 12, 15, 16, 18, 32]
-    print("초기 preorder  :", t.preorder())  # [15, 4, 3, 12, 9, 18, 16, 32]
-    print("초기 postorder:", t.postorder())  # [3, 9, 12, 4, 16, 32, 18, 15]
-    max_node = t.max_node()
-    print("최댓값 노드  :", max_node, "→ key =", max_node.key)  # Node(key=32)
+K = int(input())
+buildings = list(map(int, input().split()))
+levels = [[] for _ in range(K)]
 
-    # 2) 검색 테스트
-    assert t.search(12).key == 12
-    assert t.search(100) is None
+build_levels(buildings, 0, levels)
 
-    # 3) deleteByMerging 테스트
-    #    - 노드 4(자식 3,12를 가진 내부 노드)를 삭제
-    t1, _ = build_tree()
-    removed = t1.deleteByMerging(4)
-    print("\ndeleteByMerging(4)로 제거된 노드:", removed)
-    print("삭제 후 inorder:", t1.inorder())
-    # 삭제 전 keys = [15,4,3,12,9,18,16,32]
-    # 삭제 후 inorder는 [3,9,12,15,16,18,32] 이어야 함
-    assert t1.inorder() == sorted(k for k in keys if k != 4)
-
-    # 4) deleteByCopying 테스트
-    #    - 동일한 키 세트로 새 트리 생성 후, 18(자식 16 하나만 있는 경우) 제거
-    t2, _ = build_tree()
-    removed2 = t2.deleteByCopying(18)
-    print("\ndeleteByCopying(18)로 제거된 노드:", removed2)
-    print("삭제 후 inorder:", t2.inorder())
-    assert t2.inorder() == sorted(k for k in keys if k != 18)
-
-    # 5) 루트 삭제 테스트
-    #    - deleteByCopying으로 루트(15) 제거
-    t3, _ = build_tree()
-    removed_root = t3.deleteByCopying(15)
-    print("\ndeleteByCopying(15)로 제거된 루트 노드:", removed_root)
-    print("삭제 후 inorder:", t3.inorder())
-    assert t3.inorder() == sorted(k for k in keys if k != 15)
-
-    print("\n모든 테스트 통과!")
+for level in levels:
+    print(*level)

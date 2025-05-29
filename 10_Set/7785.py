@@ -1,3 +1,6 @@
+import sys
+
+
 class Node:
     def __init__(self, key, next=None):
         self.key = key
@@ -61,13 +64,24 @@ class HashSet:
 
 
 if __name__ == "__main__":
-    print("\n=== HashSet 테스트 ===")
-    s2 = HashSet()
-    s2.add(10)
-    s2.add(20)
-    s2.add(30)
-    s2.add(10)
-    print(s2)  # {10, 20, 30}
-    s2.remove(20)
-    print(20 in s2)  # False
-    print(s2)
+    input = sys.stdin.readline
+    n = int(input())
+    people = HashSet(1000003)
+
+    for _ in range(n):
+        name, action = input().split()
+        if action == "enter":
+            people.add(name)
+        else:  # leave
+            people.remove(name)
+
+    rest = []
+    for i in range(len(people.data)):
+        if people.data[i] is not None:
+            n = people.data[i]
+            while n:
+                rest.append(n.key)
+                n = n.next
+
+    rest.sort(reverse=True)
+    print("\n".join(rest))

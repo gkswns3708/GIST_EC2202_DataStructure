@@ -21,7 +21,8 @@ class SetBasic:
 
     def __str__(self):
         return "{" + ", ".join(map(str, self.data)) + "}"
-    
+
+
 if __name__ == "__main__":
     print("=== SetBasic 테스트 ===")
     s1 = SetBasic()

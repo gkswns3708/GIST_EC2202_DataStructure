@@ -1,16 +1,18 @@
 import sys
 
+
 class Node:
     def __init__(self, key):
-        self.key = key            
-        self.prev = None          
-        self.next = None         
+        self.key = key
+        self.prev = None
+        self.next = None
+
 
 class Deque:
     def __init__(self):
-        self.head = None         
-        self.tail = None         
-        self._size = 0          
+        self.head = None
+        self.tail = None
+        self._size = 0
 
     def append_left(self, item):
         new_node = Node(item)
@@ -70,16 +72,17 @@ class Deque:
     def size(self):
         return self._size
 
+
 if __name__ == "__main__":
     N, K = map(int, sys.stdin.readline().split())
     dq = Deque()
     for i in range(1, N + 1):
-        dq.append_right(i)  
+        dq.append_right(i)
     result = []
 
     while not dq.is_empty():
         for _ in range(K - 1):
-            dq.append_right(dq.pop_left()) 
-        result.append(dq.pop_left()) 
+            dq.append_right(dq.pop_left())
+        result.append(dq.pop_left())
 
     print("<" + ", ".join(map(str, result)) + ">")

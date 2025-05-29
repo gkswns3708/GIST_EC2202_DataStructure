@@ -4,8 +4,10 @@ class Node:
         self.left = None
         self.right = None
         self.parent = None
+
     def __str__(self):
-        return f'Node(key={self.key})'
+        return f"Node(key={self.key})"
+
 
 class BST:
     def __init__(self):
@@ -13,7 +15,7 @@ class BST:
         self.size = 0
 
     def __str__(self):
-        return f'BST(size={self.size})'
+        return f"BST(size={self.size})"
 
     def find_loc(self, key):
         if self.size == 0:
@@ -42,22 +44,22 @@ class BST:
 
     def insert(self, key):
         p = self.find_loc(key)
-        if p is not None and p.key == key:         # 1) 중복 키 검사
+        if p is not None and p.key == key:  # 1) 중복 키 검사
             print("key already exists")
             return None
 
-        n = Node(key) # 2) 새 노드 생성
+        n = Node(key)  # 2) 새 노드 생성
         n.parent = p
 
-        if p is None: # 3) 부모가 없다면(트리 비었으면) → 루트로
+        if p is None:  # 3) 부모가 없다면(트리 비었으면) → 루트로
             self.root = n
 
-        elif key < p.key: # 4) 부모가 있으면, 키 비교해서 왼/오른쪽 자식으로 연결
+        elif key < p.key:  # 4) 부모가 있으면, 키 비교해서 왼/오른쪽 자식으로 연결
             p.left = n
         else:
             p.right = n
 
-        self.size += 1 # 5) 크기 증가 후 반환
+        self.size += 1  # 5) 크기 증가 후 반환
         return n
 
     def deleteByMerging(self, key):
@@ -113,7 +115,7 @@ class BST:
         x = self.find_loc(key)
         if x is None or x.key != key:
             return None
-        
+
         # 2) 실제로 삭제(물리적 제거)할 노드(rem) 결정
         # — 자식이 둘 다 있으면 predecessor m을 물리 제거
         if x.left and x.right:
@@ -156,9 +158,9 @@ class BST:
         # 3) 크기 감소, 삭제된 노드 포인터 초기화
         self.size -= 1
         rem.parent = rem.left = rem.right = None
-        
+
         # 4) 삭제된 노드 반환
-        return rem    
+        return rem
 
     def max_node(self, start_node=None):
         """
@@ -175,6 +177,7 @@ class BST:
     def preorder(self):
         """루트→왼쪽→오른쪽 순으로 방문한 키의 리스트를 반환"""
         result = []
+
         def _rec(node):
             if not node:
                 return
@@ -188,6 +191,7 @@ class BST:
     def inorder(self):
         """왼쪽→루트→오른쪽 순으로 방문한 키의 리스트를 반환"""
         result = []
+
         def _rec(node):
             if not node:
                 return
@@ -201,6 +205,7 @@ class BST:
     def postorder(self):
         """왼쪽→오른쪽→루트 순으로 방문한 키의 리스트를 반환"""
         result = []
+
         def _rec(node):
             if not node:
                 return
@@ -210,7 +215,8 @@ class BST:
 
         _rec(self.root)
         return result
-    
+
+
 def build_tree():
     """테스트용으로 동일한 키들로 트리를 하나 생성해주는 헬퍼"""
     keys = [15, 4, 3, 12, 9, 18, 16, 32]
@@ -219,12 +225,13 @@ def build_tree():
         t.insert(k)
     return t, keys
 
+
 if __name__ == "__main__":
     # 1) 기본 트리 생성 및 순회/최댓값 테스트
     t, keys = build_tree()
-    print("초기 inorder   :", t.inorder())     # [3, 4, 9, 12, 15, 16, 18, 32]
-    print("초기 preorder  :", t.preorder())    # [15, 4, 3, 12, 9, 18, 16, 32]
-    print("초기 postorder:", t.postorder())   # [3, 9, 12, 4, 16, 32, 18, 15]
+    print("초기 inorder   :", t.inorder())  # [3, 4, 9, 12, 15, 16, 18, 32]
+    print("초기 preorder  :", t.preorder())  # [15, 4, 3, 12, 9, 18, 16, 32]
+    print("초기 postorder:", t.postorder())  # [3, 9, 12, 4, 16, 32, 18, 15]
     max_node = t.max_node()
     print("최댓값 노드  :", max_node, "→ key =", max_node.key)  # Node(key=32)
 

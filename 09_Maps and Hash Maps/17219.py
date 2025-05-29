@@ -1,9 +1,12 @@
 import sys
 
+
 class Entry:
     def __init__(self, key, value):
         self.key = key
         self.value = value
+
+
 class Dict:
     def __init__(self, size):
         self.data = [None] * size
@@ -33,15 +36,16 @@ class Dict:
         else:
             raise KeyError(f"Key '{key}' not found")
 
+
 if __name__ == "__main__":
     N, M = map(int, sys.stdin.readline().split())
-    table_size = 262147  
+    table_size = 262147
     db = Dict(table_size)
 
     for _ in range(N):
         site, pw = sys.stdin.readline().strip().split()
         db[site] = pw
-        
+
     for _ in range(M):
         query = sys.stdin.readline().strip()
         print(db[query])
