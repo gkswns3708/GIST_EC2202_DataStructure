@@ -3,9 +3,11 @@ class Entry:
         self.key = key
         self.value = value
 
-class Dict():
+
+class Dict:
     def __init__(self, length):
-        self.data = [None]  * length
+        self.data = [None] * length
+
     def findkey(self, Key):
         # i = f(Key)를 아래와 같이 수정
         start = i = hash(Key) % len(self.data)
@@ -17,21 +19,24 @@ class Dict():
             if i == start:
                 break  # 한 바퀴 돌았으면 종료
         return (False, i)
+
     def __len__(self):
         return len(self.data)
+
     def __setitem__(self, Key, value):
         found, i = self.findkey(Key)
         if found:
             self.data[i].value = value
         else:
             self.data[i] = Entry(Key, value)
+
     def __getitem__(self, Key):
         found, i = self.findkey(Key)
         if found:
             return self.data[i].value
         else:
             raise KeyError("Key not found")
-        
+
     def pop(self, key):
         found, i = self.findkey(key)
         if not found:
@@ -55,7 +60,7 @@ class Dict():
 
         return removed_value
 
-                
+
 if __name__ == "__main__":
     # 작은 크기의 해시 테이블로 충돌 유도
     d = Dict(5)
@@ -97,7 +102,7 @@ if __name__ == "__main__":
 
     # pop non-existent key
     # print("\nPopping non-existent key 'grape':", d.pop("grape"))
-# ======= 충돌 실험 ==========
+    # ======= 충돌 실험 ==========
     # 충돌 실험을 위해 해시 테이블 크기를 아주 작게 잡는다
     d = Dict(3)
 

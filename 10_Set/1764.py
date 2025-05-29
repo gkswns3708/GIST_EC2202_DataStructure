@@ -1,3 +1,6 @@
+import sys
+
+
 class Node:
     def __init__(self, key, next=None):
         self.key = key
@@ -61,13 +64,22 @@ class HashSet:
 
 
 if __name__ == "__main__":
-    print("\n=== HashSet 테스트 ===")
-    s2 = HashSet()
-    s2.add(10)
-    s2.add(20)
-    s2.add(30)
-    s2.add(10)
-    print(s2)  # {10, 20, 30}
-    s2.remove(20)
-    print(20 in s2)  # False
-    print(s2)
+    input = sys.stdin.readline
+    n, m = map(int, input().split())
+    non_seen = HashSet(1000003)
+    non_heard = HashSet(1000003)
+    for _ in range(n):
+        non_heard.add(input().rstrip())
+    for _ in range(m):
+        non_seen.add(input().rstrip())
+
+    result = []
+    for i in range(1000003):
+        n = non_heard.data[i]
+        while n:
+            if n.key in non_seen:
+                result.append(n.key)
+            n = n.next
+    print(len(result))
+    for name in sorted(result):
+        print(name)

@@ -1,11 +1,13 @@
 import sys
 
+
 class Entry:
     def __init__(self, key, value):
         self.key = key
         self.value = value
 
-class Dict():
+
+class Dict:
     def __init__(self, length):
         self.data = [None] * length
 
@@ -41,6 +43,7 @@ class Dict():
         else:
             self.data[i] = Entry(Key, 1)
 
+
 if __name__ == "__main__":
     N = int(input())
     cards = list(map(int, sys.stdin.readline().split()))
@@ -60,5 +63,4 @@ if __name__ == "__main__":
     for q in queries:
         result.append(str(counter[q]))
 
-    print(' '.join(result))
-        
+    print(" ".join(result))

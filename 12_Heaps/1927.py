@@ -62,34 +62,16 @@ class MinHeap:
         return str(self.A)
 
 
-if __name__ == "__main__":
-    h = MinHeap()
+import sys
 
-    # Heap은 구조를 유지하기만 하면, 내부 원소의 순서는 변경될 수 있음.
-    # 첫번째 Insert Test는 insert-by-insert + heapify_up 방식이고,
-    # 아래의 make_heap은 한번에 만든 방식이면서 heapify_down 방식임.
-    # 이 맥락에서 정답은 없음. 상황에 맞게 선택하면 된다고 생각함.
-    print("== Insert Test ==")
-    for x in [2, 8, 6, 1, 10, 15, 3, 12, 11]:
-        h.insert(x)
-        print("Insert", x, "→", h)
+input = sys.stdin.readline
 
-    temp_heap = MinHeap()
-    temp_heap.make_heap([2, 8, 6, 1, 10, 15, 3, 12, 11])
-    print("\n== Heapify Test ==")
-    print("Heapified:", temp_heap)
+n = int(input())
+heap = MinHeap()
 
-    print("\n== Find Min ==")
-    print("Min:", h.find_min())  # 최대값 (root)
-
-    print("\n== Delete Min Test ==")
-    while len(h) > 0:
-        print("Deleted:", h.delete_min(), "→", h)
-
-    print("\n== Make Heap from List ==")
-    h.make_heap([4, 8, 6, 1, 10, 15, 3, 12, 11])
-    print("Heapified:", h)
-
-    print("Pop all:")
-    while len(h) > 0:
-        print(h.delete_min(), end=" ")
+for _ in range(n):
+    x = int(input())
+    if x == 0:
+        print(heap.delete_min())
+    else:
+        heap.insert(x)

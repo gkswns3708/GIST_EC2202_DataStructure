@@ -1,16 +1,18 @@
 import sys
 
+
 class Node:
     def __init__(self, key):
-        self.key = key            
-        self.prev = None          
-        self.next = None         
+        self.key = key
+        self.prev = None
+        self.next = None
+
 
 class Deque:
     def __init__(self):
-        self.head = None         
-        self.tail = None         
-        self._size = 0          
+        self.head = None
+        self.tail = None
+        self._size = 0
 
     def append_left(self, item):
         new_node = Node(item)
@@ -68,6 +70,7 @@ class Deque:
     def size(self):
         return self._size
 
+
 if __name__ == "__main__":
     N = list(map(int, sys.stdin.readline().split()))[0]
     deq = Deque()
@@ -81,7 +84,7 @@ if __name__ == "__main__":
         # 6: 덱이 비어있으면 1, 아니면 0을 출력한다.
         # 7: 덱에 정수가 있다면 맨 앞의 정수를 출력한다. 없다면 -1을 대신 출력한다.
         # 8: 덱에 정수가 있다면 맨 뒤의 정수를 출력한다. 없다면 -1을 대신 출력한다.
-        if query[0] == 1: 
+        if query[0] == 1:
             deq.append_left(query[1])
         elif query[0] == 2:
             deq.append_right(query[1])
@@ -97,4 +100,3 @@ if __name__ == "__main__":
             print(deq.peek_left())
         elif query[0] == 8:
             print(deq.peek_right())
-        

@@ -4,8 +4,10 @@ class Node:
         self.value = value
         self.next = next
 
+
 def hash_function(key):
     return hash(key) % 10
+
 
 class DictChaining:
     def __init__(self):
@@ -58,7 +60,7 @@ class DictChaining:
             n = n.next
 
         raise KeyError(key)
-    
+
     # 출력용
     def printall(self):
         for i in range(len(self.data)):
@@ -72,6 +74,7 @@ class DictChaining:
             else:
                 print(f"Index {i}: None")
 
+
 if __name__ == "__main__":
     d = DictChaining()
 
@@ -81,9 +84,9 @@ if __name__ == "__main__":
     d["cherry"] = 300
 
     # 조회
-    print("apple:", d["apple"])     # 100
-    print("banana:", d["banana"])   # 200
-    print("cherry:", d["cherry"])   # 300
+    print("apple:", d["apple"])  # 100
+    print("banana:", d["banana"])  # 200
+    print("cherry:", d["cherry"])  # 300
     d.printall()  # 해시 테이블 상태 출력
 
     # 덮어쓰기
@@ -99,7 +102,7 @@ if __name__ == "__main__":
 
     # 멤버십 테스트
     print("banana in d:", "banana" in d)  # True
-    print("apple in d:", "apple" in d)    # False
+    print("apple in d:", "apple" in d)  # False
 
     # 충돌 유도: 동일한 해시값을 강제로 만드는 객체
     class FixedHashStr(str):
@@ -119,7 +122,6 @@ if __name__ == "__main__":
     print(f"{k2} →", d[k2])  # B
     print(f"{k3} →", d[k3])  # C
 
-
     d.printall()  # 해시 테이블 상태 출력
     # 삭제 테스트
     del d[k2]
@@ -127,7 +129,7 @@ if __name__ == "__main__":
         print(d[k2])
     except KeyError as e:
         print(f"{k2} removed correctly:", e)
-        
+
     d.printall()  # 해시 테이블 상태 출력
 
     # 나머지 키는 여전히 유효한지 확인

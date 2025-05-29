@@ -7,17 +7,17 @@ class Node:
 
 class DoublyLinkedList:
     def __init__(self):
-        self.head = Node()  
-        self.tail = Node()  
+        self.head = Node()
+        self.tail = Node()
 
         self.head.next = self.tail
         self.tail.prev = self.head
-        
-        self.size = 0  
+
+        self.size = 0
 
     def splice(self, a, b, x):  # O(1)
         if a is None or b is None or x is None:
-            return  
+            return
 
         ap = a.prev
         bn = b.next
@@ -68,13 +68,13 @@ class DoublyLinkedList:
     def remove(self, x):  # O(1)
         if x is None or x == self.head or x == self.tail:
             return None
-        
+
         x.prev.next = x.next
         x.next.prev = x.prev
         self.size -= 1
 
     def popFront(self):  # O(1)
-        if self.head.next == self.tail: 
+        if self.head.next == self.tail:
             return None
         else:
             value = self.head.next.key
@@ -82,19 +82,20 @@ class DoublyLinkedList:
             return value
 
     def popBack(self):  # O(1)
-        if self.head.next == self.tail:  
+        if self.head.next == self.tail:
             return None
         else:
             value = self.tail.prev.key
             self.remove(self.tail.prev)
             return value
 
-    def printList(self):  
+    def printList(self):
         current = self.head.next
         while current != self.tail:
             print(current.key, end=" ")
             current = current.next
         print()
+
 
 def main():
     dll = DoublyLinkedList()
@@ -129,7 +130,7 @@ def main():
 
     print("=== popFront, popBack 테스트 ===")
     print("popFront:", dll.popFront())  # 30
-    print("popBack:", dll.popBack())    # 10
+    print("popBack:", dll.popBack())  # 10
     dll.printList()  # 기대 결과: 20 35 40 45
 
     print("=== remove 테스트 ===")
@@ -139,6 +140,7 @@ def main():
 
     print("=== 리스트 크기 확인 ===")
     print("현재 크기:", dll.size)  # 기대 결과: 3
+
 
 if __name__ == "__main__":
     main()

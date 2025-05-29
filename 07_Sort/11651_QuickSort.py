@@ -4,29 +4,32 @@
 
 
 import sys
+
 sys.setrecursionlimit(10**6)
 
 get_line: iter = lambda: map(int, sys.stdin.readline().rstrip().split())
 get_input: int = lambda: int(sys.stdin.readline().strip())
 
+
 def quick_sort(A):
-  if len(A) == 0:
-    return A
+    if len(A) == 0:
+        return A
 
-  pivot = A[len(A)// 2] # pivot 0 -> len(A) // 2로 수정
-  left = []
-  right = []
-  middle = []
+    pivot = A[len(A) // 2]  # pivot 0 -> len(A) // 2로 수정
+    left = []
+    right = []
+    middle = []
 
-  for a in A:
-    if compare(a, pivot) == 1:
-      left.append(a)
-    elif compare(a, pivot) == 0:
-      middle.append(a)
-    else:
-      right.append(a)
+    for a in A:
+        if compare(a, pivot) == 1:
+            left.append(a)
+        elif compare(a, pivot) == 0:
+            middle.append(a)
+        else:
+            right.append(a)
 
-  return quick_sort(left) + middle + quick_sort(right)
+    return quick_sort(left) + middle + quick_sort(right)
+
 
 def compare(x, y):
     if x[1] > y[1]:
@@ -51,4 +54,3 @@ for _ in range(N):
 sorted_arr = quick_sort(input_arr)
 for i in sorted_arr:
     print(i[0], i[1])
-

@@ -1,6 +1,8 @@
 import sys
+
 get_line: iter = lambda: map(int, sys.stdin.readline().rstrip().split())
 get_input: int = lambda: int(sys.stdin.readline().strip())
+
 
 def binary_search(lines, N):
     def possible(lines, length, N):
@@ -8,6 +10,7 @@ def binary_search(lines, N):
         for line in lines:
             count += line // length
         return count >= N
+
     left = 1
     right = max(lines)
     result = 0
@@ -26,8 +29,9 @@ def solution():
     lines = []
     for _ in range(K):
         lines.append(get_input())
-    
+
     print(binary_search(lines, N))
+
 
 if __name__ == "__main__":
     solution()
