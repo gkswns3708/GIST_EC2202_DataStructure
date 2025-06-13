@@ -20,7 +20,7 @@ class HashSet:
                 return  # already exists
             n = n.next
         self.data[i] = Node(key, self.data[i])  # prepend
-
+    # Find
     def remove(self, key):
         i = self._hash(key)
         n = self.data[i]

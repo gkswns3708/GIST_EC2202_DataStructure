@@ -18,7 +18,6 @@ order = []
 cnt = 0
 
 if __name__ == "__main__":
-    # — 알고리즘: 너비 우선 탐색 (여기에 몰아넣음)
     def bfs(start):
         global cnt
         visited[start] = True
